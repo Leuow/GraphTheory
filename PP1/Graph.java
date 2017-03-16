@@ -50,12 +50,10 @@ class Graph {
 		for (int i = 0; i < numberVertexes; i++) {
 			for (int j = 0; j < numberVertexes; j++) {
 				int value = reader.nextInt();
-				System.out.print(value + " ");
 				if(value == 1) {
 					this.connectTo(i, j, false);					
 				}
 			}
-			System.out.println();
 		}
 	}
 }
