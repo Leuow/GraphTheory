@@ -12,5 +12,8 @@ class Main {
 		Graph graph = new Graph(numberVertexes);
 		graph.readGraph(reader, numberVertexes);
 		
+		Check check = new Check(graph);
+		System.out.println(check.isHamiltonian());
+		
 	}
 }
