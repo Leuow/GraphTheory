@@ -3,16 +3,17 @@ import java.io.InputStreamReader;
 import java.util.ArrayList;
 
 class MyReader {
+
 	private static final InputStreamReader in = new InputStreamReader(System.in);
 	private static final BufferedReader br = new BufferedReader(in);
 	private ArrayList<String> buffer;
-	private int lastPosition;	
-	
+	private int lastPosition;
+
 	public MyReader() {
 		this.setLastPosition(0);
 		this.setResult(new ArrayList<>());
 	}
-	
+
 	private ArrayList<String> getResult() {
 		return buffer;
 	}
@@ -28,7 +29,7 @@ class MyReader {
 	private void setLastPosition(int lastPosition) {
 		this.lastPosition = lastPosition;
 	}
-	
+
 	private void addElementToBuffer(String element) {
 		this.buffer.add(element);
 	}
@@ -52,19 +53,19 @@ class MyReader {
 		int position = this.getLastPosition();
 		String string = this.getResult().get(position);
 		int value = Integer.parseInt(string);
-		
+
 		this.setLastPosition(position + 1);
-		
+
 		return value;
 	}
-	
+
 	public String nextString() {
 		int position = this.getLastPosition();
 		String value = this.getResult().get(position);
-		
+
 		this.setLastPosition(position + 1);
-		
+
 		return value;
 	}
-	
+
 }
