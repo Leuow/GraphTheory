@@ -1,5 +1,5 @@
 
-public class Eulerian implements TrackInterface {
+class Eulerian extends TrackAbstract {
 
 	private Graph graph;
 

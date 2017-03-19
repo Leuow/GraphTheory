@@ -1,6 +1,6 @@
 import java.util.ArrayList;
 
-public class Hamiltonian implements TrackInterface {
+class Hamiltonian extends TrackAbstract {
 
 	private Graph graph;
 

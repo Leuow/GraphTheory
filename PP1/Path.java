@@ -1,5 +1,6 @@
+import java.util.ArrayList;
 
-public class Path implements TrackInterface {
+class Path extends TrackAbstract {
 
 	private Graph graph;
 
@@ -16,9 +17,16 @@ public class Path implements TrackInterface {
 	@Override
 	public boolean checkProposition(String path) {
 
-		System.out.println("Path: " + path);
+		ArrayList<Integer> vertexes = this.getVertexes(path);
+		boolean[] bitmap = new boolean[vertexes.size() + 1];
 
-		return false;
+		for (int item : vertexes) {
+			if (!(bitmap[item] ^= true)) { // if duplicate was found it is not a Path
+				return false;
+			}
+		}
+
+		return true;
 	}
 
 	public Graph getGraph() {

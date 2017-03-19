@@ -3,7 +3,7 @@ import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.util.HashMap;
 
-public class Track {
+class Track {
 
 	private static final String METHOD_NAME_NEED_PATH = "needPath";
 	private static final String METHOD_NAME_CHECK_PROPOSITION = "checkProposition";
@@ -111,14 +111,14 @@ public class Track {
 
 		try {
 			boolean value = ((boolean) this.getMethodCheckProposition().invoke(this.getInstanceOfMyClass(), path));
-			
-			if(this.isToggleProposition()) {
-				
+
+			if (this.isToggleProposition()) {
+
 				return !value;
 			}
 
 			return value;
-					
+
 		} catch (IllegalAccessException | IllegalArgumentException | InvocationTargetException e) {
 			e.printStackTrace();
 		}

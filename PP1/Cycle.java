@@ -1,5 +1,8 @@
+import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.Set;
 
-public class Cycle implements TrackInterface {
+class Cycle extends TrackAbstract {
 
 	private Graph graph;
 
@@ -16,9 +19,33 @@ public class Cycle implements TrackInterface {
 	@Override
 	public boolean checkProposition(String path) {
 
-		System.out.println("Cycle: " + path);
+		ArrayList<Integer> vertexes = this.getVertexes(path);
+		Set<Integer> edge = new HashSet<Integer>();
 
-		return false;
+		boolean[] bitmap = new boolean[vertexes.size() + 1];
+
+		for (int i = 0; i < vertexes.size() - 1; i++) {
+
+			int a = vertexes.get(i);
+			int b = vertexes.get(i + 1);
+
+			if (a > b) {
+				a += b;
+				b = a - b;
+				a -= b;
+			}
+
+			if (!edge.add(a * 10 + b)) {
+				return false;
+			}
+			
+			if (!(bitmap[vertexes.get(i)] ^= true)) { // if duplicate was found it is not a Path
+				return false;
+			}
+
+		}
+
+		return vertexes.get(0) == vertexes.get(vertexes.size() - 1);
 	}
 
 	public Graph getGraph() {
