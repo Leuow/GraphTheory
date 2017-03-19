@@ -3,7 +3,7 @@ import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.util.HashMap;
 
-public class GenericPath {
+public class Track {
 
 	private static final String METHOD_NAME_NEED_PATH = "needPath";
 	private static final String METHOD_NAME_CHECK_PROPOSITION = "checkProposition";
@@ -30,7 +30,7 @@ public class GenericPath {
 		}
 	};
 
-	public GenericPath(String className, Graph graph) {
+	public Track(String className, Graph graph) {
 		this.setGraph(graph);
 
 		if (className.substring(0, 1).equals("!")) {

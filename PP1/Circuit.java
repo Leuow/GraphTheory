@@ -1,5 +1,5 @@
 
-public class Circuit implements InterfaceGenericPath {
+public class Circuit implements TrackInterface {
 
 	private Graph graph;
 

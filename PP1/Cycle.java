@@ -1,5 +1,5 @@
 
-public class Cycle implements InterfaceGenericPath {
+public class Cycle implements TrackInterface {
 
 	private Graph graph;
 

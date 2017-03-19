@@ -1,5 +1,5 @@
 
-public class Eulerian implements InterfaceGenericPath {
+public class Eulerian implements TrackInterface {
 
 	private Graph graph;
 

@@ -1,5 +1,5 @@
 
-public class Trail implements InterfaceGenericPath {
+public class Trail implements TrackInterface {
 	
 	private Graph graph;
 

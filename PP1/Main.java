@@ -17,8 +17,8 @@ class Main {
 		graph.readGraph(reader, numberVertexes);
 
 		for (int i = 0; i < numberPropositions; i++) {
-			GenericPath proposition1 = new GenericPath(reader.nextString(), graph);
-			GenericPath proposition2 = new GenericPath(reader.nextString(), graph);
+			Track proposition1 = new Track(reader.nextString(), graph);
+			Track proposition2 = new Track(reader.nextString(), graph);
 
 			boolean truthProposition1;
 			boolean truthProposition2;

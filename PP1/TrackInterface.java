@@ -1,5 +1,5 @@
 
-public interface InterfaceGenericPath {
+public interface TrackInterface {
 
 	public boolean needPath();
 	

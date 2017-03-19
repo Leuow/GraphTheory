@@ -1,5 +1,5 @@
 
-public class Walk implements InterfaceGenericPath {
+public class Walk implements TrackInterface {
 	
 	private Graph graph;
 	
