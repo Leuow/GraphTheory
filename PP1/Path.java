@@ -1,4 +1,6 @@
 import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.Set;
 
 class Path extends TrackAbstract {
 
@@ -17,44 +19,32 @@ class Path extends TrackAbstract {
 	@Override
 	public boolean checkProposition(String path) {
 
+		Set<Integer> check = new HashSet<Integer>();
 		ArrayList<Integer> vertexes = this.getVertexes(path);
-		boolean[] bitmap = new boolean[vertexes.size() + 1];
 
-		int edge = 0, newEdge = 0;
-		int a = 0, b = 0;
-		for (int i = 0; i < vertexes.size() - 1; i++) {
+		if (vertexes.size() > 1) {
+			boolean result = true;
+			for (int i = 0; (i < vertexes.size() - 1) && result; i++) {
+				if (!this.hasInGraph(vertexes, i, i + 1, graph)) {
+					result = false;
 
-			a = vertexes.get(i);
-			b = vertexes.get(i + 1);
-			
-			if (a == b) {
-				return false;
-			}else if (a > b) {
-				a = a + b;
-				b = a - b;
-				a = a - b;
-			}
-			
-			if (!(bitmap[a] ^= true)) { // if duplicate was found it is not a Path
-				return false;
-			}else if (i % 2 == 0) {
-				edge = a * 10 + b;
-			} else {
-				newEdge = a * 10 + b;
-				if (edge == newEdge) {
+				} else if (vertexes.get(i) == vertexes.get(i + 1)) {
+					result = false;
+
+				} else if (!check.add(vertexes.get(i))) {
 					return false;
+
 				}
 			}
-		}
-		
-		a = vertexes.get(vertexes.size() - 1);
-		b = vertexes.get(vertexes.size() - 2);
 
-		if (a == b || !(bitmap[b] ^= true)) {
-			return false;
+			if (!check.add(vertexes.get(vertexes.size() - 1))) {
+				return false;
+
+			}
+			return result;
 		}
-		
-		return true;
+
+		return false;
 	}
 
 	public Graph getGraph() {

@@ -19,40 +19,36 @@ class Circuit extends TrackAbstract {
 	@Override
 	public boolean checkProposition(String path) {
 
+		Set<Integer> check = new HashSet<Integer>();
 		ArrayList<Integer> vertexes = this.getVertexes(path);
-		Set<Integer> edges = new HashSet<Integer>();
-		int edge = 0, newEdge = 0;
-		int a = 0, b = 0;
-		for (int i = 0; i < vertexes.size() - 1; i++) {
 
-			a = vertexes.get(i);
-			b = vertexes.get(i + 1);
+		if (vertexes.size() > 1) {
+			boolean result = true;
+			for (int i = 0; (i < vertexes.size() - 1) && result; i++) {
+				if (!this.hasInGraph(vertexes, i, i + 1, graph)) {
+					result = false;
 
-			if (a == b) {
-				return false;
-			} else if (!edges.add(a * 10 + b)) {
-				return false;
-			} else if (a > b) {
-				a = a + b;
-				b = a - b;
-				a = a - b;
-			}
+				} else if (vertexes.get(i) == vertexes.get(i + 1)) {
+					result = false;
 
-			if (i % 2 == 0) {
-				edge = a * 10 + b;
-			} else {
-				newEdge = a * 10 + b;
-				if (edge == newEdge) {
-					return false;
+				} else {
+					int a = vertexes.get(i);
+					int b = vertexes.get(i + 1);
+
+					if (a > b) {
+						a = a + b;
+						b = a - b;
+						a = a - b;
+					}
+
+					if (!check.add(a * 10 + b)){
+						return false;
+						
+					}
 				}
 			}
-		}
 
-		a = vertexes.get(vertexes.size() - 1);
-		b = vertexes.get(vertexes.size() - 2);
-
-		if (a == b) {
-			return false;
+			return vertexes.get(0) == vertexes.get(vertexes.size() - 1);
 		}
 
 		return vertexes.get(0) == vertexes.get(vertexes.size() - 1);
