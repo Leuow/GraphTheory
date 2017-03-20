@@ -20,23 +20,39 @@ class Trail extends TrackAbstract {
 	public boolean checkProposition(String path) {
 
 		ArrayList<Integer> vertexes = this.getVertexes(path);
-		Set<Integer> edge = new HashSet<Integer>();
-
+		Set<Integer> edges = new HashSet<Integer>();
+		int edge = 0, newEdge = 0;
+		int a = 0, b = 0;
 		for (int i = 0; i < vertexes.size() - 1; i++) {
 
-			int a = vertexes.get(i);
-			int b = vertexes.get(i + 1);
+			a = vertexes.get(i);
+			b = vertexes.get(i + 1);
 
-			if (a > b) {
-				a += b;
-				b = a - b;
-				a -= b;
-			}
-
-			if (!edge.add(a * 10 + b)) {
+			if (a == b) {
 				return false;
+			} else if (!edges.add(a * 10 + b)) {
+				return false;
+			} else if (a > b) {
+				a = a + b;
+				b = a - b;
+				a = a - b;
 			}
 
+			if (i % 2 == 0) {
+				edge = a * 10 + b;
+			} else {
+				newEdge = a * 10 + b;
+				if (edge == newEdge) {
+					return false;
+				}
+			}
+		}
+
+		a = vertexes.get(vertexes.size() - 1);
+		b = vertexes.get(vertexes.size() - 2);
+
+		if (a == b) {
+			return false;
 		}
 
 		return true;

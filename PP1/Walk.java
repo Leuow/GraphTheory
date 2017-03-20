@@ -1,6 +1,4 @@
 import java.util.ArrayList;
-import java.util.HashSet;
-import java.util.Set;
 
 class Walk extends TrackAbstract {
 
@@ -21,37 +19,36 @@ class Walk extends TrackAbstract {
 
 		ArrayList<Integer> vertexes = this.getVertexes(path);
 
-		int edge = 0;
-		int newEdge = 0;
+		int edge = 0, newEdge = 0;
+		int a = 0, b = 0;
 		for (int i = 0; i < vertexes.size() - 1; i++) {
 
-			int a = vertexes.get(i);
-			int b = vertexes.get(i + 1);
+			a = vertexes.get(i);
+			b = vertexes.get(i + 1);
+
+			if (a == b) {
+				return false;
+			} else if (a > b) {
+				a = a + b;
+				b = a - b;
+				a = a - b;
+			}
 
 			if (i % 2 == 0) {
-				if (a > b) {
-					a += b;
-					b = a - b;
-					a -= b;
-				}
 				edge = a * 10 + b;
 			} else {
-				if (a > b) {
-					a += b;
-					b = a - b;
-					a -= b;
-				}
 				newEdge = a * 10 + b;
 				if (edge == newEdge) {
 					return false;
 				}
-
 			}
+		}
 
-			if (a == b) {
-				return false;
-			}
+		a = vertexes.get(vertexes.size() - 1);
+		b = vertexes.get(vertexes.size() - 2);
 
+		if (a == b) {
+			return false;
 		}
 
 		return true;
