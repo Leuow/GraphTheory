@@ -1,6 +1,18 @@
-4 1
+4 6
 0 1 0 1
 1 0 1 0
 0 1 0 1
 1 0 1 0
-circuito circuito 1-2-3-4-1-4-1
+ciclo ciclo 1-2-3-4-1
+ciclo ciclo 1
+ciclo ciclo 1-2
+ciclo ciclo 1-2-8
+ciclo ciclo 1-2-4
+ciclo ciclo 1-2-4-2
+
+yes
+no
+no
+no
+no
+no

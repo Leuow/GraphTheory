@@ -1,4 +1,16 @@
-2 1
-0 1
-1 0
-passeio passeio 1-2
+4 5
+0 1 0 1
+1 0 1 0
+0 1 0 1
+1 0 1 0
+trilha trilha 1-2-3-4-1-2
+trilha trilha 1
+trilha trilha 1-2
+trilha trilha 1-2-8
+trilha trilha 1-2-4
+
+no
+no
+yes
+no
+no

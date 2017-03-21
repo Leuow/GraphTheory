@@ -19,31 +19,22 @@ class Path extends TrackAbstract {
 	@Override
 	public boolean checkProposition(String path) {
 
-		Set<Integer> check = new HashSet<Integer>();
-		ArrayList<Integer> vertexes = this.getVertexes(path);
-
-		if (vertexes.size() > 1) {
-			boolean result = true;
-			for (int i = 0; (i < vertexes.size() - 1) && result; i++) {
-				if (!this.hasInGraph(vertexes, i, i + 1, graph)) {
-					result = false;
-
-				} else if (vertexes.get(i) == vertexes.get(i + 1)) {
-					result = false;
-
-				} else if (!check.add(vertexes.get(i))) {
+		Walk walk = new Walk(this.getGraph());		
+		boolean isWalk = walk.checkProposition(path);
+		
+		if (isWalk) {
+			Set<Integer> check = new HashSet<Integer>();
+			ArrayList<Integer> vertexes = this.getVertexes(path);
+			
+			for (Integer vertex : vertexes) {
+				if(!check.add(vertex) ){
+					
 					return false;
-
 				}
 			}
-
-			if (!check.add(vertexes.get(vertexes.size() - 1))) {
-				return false;
-
-			}
-			return result;
+			return true;
 		}
-
+		
 		return false;
 	}
 

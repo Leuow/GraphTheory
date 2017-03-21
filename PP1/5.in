@@ -1,6 +1,18 @@
-4 1
+4 6
 0 1 0 1
 1 0 1 0
 0 1 0 1
 1 0 1 0
-trilha trilha 1-2-3-4-1-2
+circuito circuito 1-2-3-4-1
+circuito circuito 1
+circuito circuito 1-2
+circuito circuito 1-2-8
+circuito circuito 1-2-4
+circuito circuito 1-2-4-2
+
+yes
+no
+no
+no
+no
+no

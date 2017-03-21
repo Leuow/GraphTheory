@@ -19,48 +19,24 @@ class Cycle extends TrackAbstract {
 	@Override
 	public boolean checkProposition(String path) {
 
-		Set<Integer> check = new HashSet<Integer>();
-		Set<Integer> checkVertex = new HashSet<Integer>();
-		ArrayList<Integer> vertexes = this.getVertexes(path);
-
-		if (vertexes.size() > 1) {
-			boolean result = true;
-			for (int i = 0; (i < vertexes.size() - 1) && result; i++) {
-				if (!this.hasInGraph(vertexes, i, i + 1, graph)) {
-					result = false;
-
-				} else if (vertexes.get(i) == vertexes.get(i + 1)) {
-					result = false;
-
-				} else {
-					int a = vertexes.get(i);
-					int b = vertexes.get(i + 1);
-
-					if (a > b) {
-						a = a + b;
-						b = a - b;
-						a = a - b;
-					}
-
-					if (!check.add(a * 10 + b)){
-						return false;
-						
-					}else if (!checkVertex.add(a) || !checkVertex.add(b)) {
-						return false;
-						
-					}
+		Circuit circuit = new Circuit(this.getGraph());
+		boolean isCircuit = circuit.checkProposition(path);
+		
+		if (isCircuit) {
+			ArrayList<Integer> vertexes = this.getVertexes(path);
+			Set<Integer> check = new HashSet<Integer>();
+			
+			for (int i = 0; i < vertexes.size() - 1; i++) {
+				if(!check.add(vertexes.get(i)) ){
+					
+					return false;
 				}
 			}
-			
-			if (!checkVertex.add(vertexes.size() - 1)) {
-				return false;
-				
-			}
-
+						
 			return vertexes.get(0) == vertexes.get(vertexes.size() - 1);
 		}
 
-		return vertexes.get(0) == vertexes.get(vertexes.size() - 1);
+		return false;
 	}
 
 	public Graph getGraph() {
